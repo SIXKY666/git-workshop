@@ -38,9 +38,9 @@ git branch [branch_name]
 git checkout [branch_name]
 ```
 > สามารถย่อคำสั่งการสร้างและการสลับ branch ไว้ในคำสั่งเดียวได้
-> ```
+> `
 > git checkout -b [branch_name]
-> ```
+> `
 > โดย git จะสร้าง branch ใหม่ให้แล้วสลับไป branch นั้นโดยอัตโนมัติ
 
 
@@ -51,10 +51,20 @@ git branch -d [branch_name]
 
 <!-- ให้นักศึกษาลองสร้าง branch ใหม่และ commit ที่ branch ใหม่ดู และลองสลับกลับไป branch เก่าดู จะเห็นว่าใน main branch ไม่มี commit ของเรา แต่ใน branch ใหม่จะมี -->
 
+## Start doing some examples
+
+1. ให้สร้าง branch ใหม่ตามคำสั่ง command line ด้านบน
+1. แก้ไขโค้ดในไฟล์ `index.html` ตรงไหนก็ได้ และเพิ่มไฟล์ `cat.txt` ที่มีคำว่า cat ลงไป
+1. ใช้คำสั่ง `git add ./` เพื่อ add ไฟล์ทั้งหมดใน working directory นี้ไปยัง staged area 
+1. `git commit -m "try to edit some texts"`
+1. `git log --oneline` เพื่อเช็คว่าใน branch ใหม่ของเรานี้มี commit message ใหม่ขึ้นมารึยัง
+1. จากนั้นให้ลองใช้คำสั่ง `git checkout main` เพื่อกลับมาที่ branch main เพื่อดูความแตกต่างจะเห็นว่าไฟล์ `cat.txt` หายไป และไฟล์ `index.html` ก็กลับมาเป็นเวอร์ชั่นที่ยังไม่ถูกแก้ไข
+2. `git log --oneline` อีกครั้งใน branch main นี้จะเห็นว่าไม่มี commit message อันใหม่ที่เราเคยสร้าง
+
 ## Merging Branches
 การ merging branches ใน Git นั้นเป็นการที่เราสามารถ**รวม**โค้ดจาก branch หนึ่งไปยังอีก branch หนึ่ง
 
-ขั้นตอนการ merge
+### ขั้นตอนการ merge :
 - ให้สลับไปที่ `[target branch]` (main branch หรือ branch หลักที่ต้องการให้รวมเข้าไป)
 - ใช้คำสั่ง `git merge [source_branch]`
 
@@ -89,7 +99,7 @@ Merge Conflict จะเกิดขึ้นก็ต่อเมื่อ 2 br
 
 ![](image/merge-conflict.png)
 
-ขั้นตอนการแก้ไข merge conflict
+### ขั้นตอนการแก้ไข merge conflict :
 1. หาไฟล์ที่เกิด merge conflict ซึ่งรายชื่อไฟล์ที่เกิดปัญหาทั้งหมดจะถูกแสดงผ่าน terminal อยู่แล้วเมื่อเราทำการ merge
 2. จะพบหน้าตาของไฟล์ในลักษณะดังนี้
 ![](image/img_merge-conflict.png)
