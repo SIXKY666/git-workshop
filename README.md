@@ -9,23 +9,22 @@
 - สามารถแก้ไขปัญหา merge conflicts
 - (optional)
   - git branches best practice
-  - การเปิด pull request / merge request
 
 ## Introduction to Git Branches and Merge
-Git เป็น version control system ที่ช่วยในการติดตามการเปลี่ยนแปลง (changes) ของโค้ดเรา ซึ่งมีหนึ่งฟีเจอร์ที่สำคัญที่สุดที่ Git เลยก็คือ ความสามารถในการที่สามารถสร้าง branch และจัดการโค้ดของเราผ่าน branch ต่าง ๆ
+Git เป็น version control system ที่ช่วยในการติดตามการเปลี่ยนแปลง (changes) ของโค้ดเรา ซึ่งมีหนึ่งฟีเจอร์ที่สำคัญที่สุดที่ Git เลยก็คือ ความสามารถในการสร้าง branch และจัดการโค้ดของเราผ่าน branch ต่าง ๆ
 
 ![](image/git-branches-merge.png)
 
 Branch ใน Git นั้นคือ เส้น commit line ที่แยกออกมาจาก main branch ที่สามารถทำให้ developer ทุกคนสามารถแก้ไขโค้ดของตนเองโดยที่**ไม่กระทบต่อ main branch**.
 
+ซึ่งมีประโยชน์มากเมื่อเราต้องพัฒนาฟีเจอร์ใหม่, แก้ bug, ทดสอบแก้ไขโค้ดโดยที่งานเราไม่ส่งผลกระทบต่อ source code หลักของทีม
+
+ซึ่งหลังจากเราแก้ไขโค้ดที่เป็นของเราเสร็จแล้ว เราก็สามารถ merge โค้ดของเราให้กลับไปที่ main branch ได้ และด้วยความสามารถเหล่านี้จะทำให้การทำ branching และ merging ถือเป็นฟีเจอร์ทรงอานุภาพที่สุดของ Git ที่จะทำให้ developers ทุกคนสามารถทำงานบนโปรเจคเดียวกันได้อย่างราบรื่น
+
 > ในการทำงานระดับอุตสาหกรรม main branch ถือเป็นโค้ดที่จะถูก deploy ในระดับ production 
 > 
 > ดังนั้นจะมีการ protect branch ให้ไม่สามารถแก้ไขใด ๆ ได้ทั้งสิ้น 
 > จะสามารถแก้ไขได้โดยการเปิด pull request / merge request เท่านั้น
-
-ซึ่งมีประโยชน์มากเมื่อเราต้องพัฒนาฟีเจอร์ใหม่, แก้ bug, ทดสอบแก้ไขโค้ดโดยที่งานเราไม่ส่งผลกระทบต่อ source code หลักของทีม
-
-ซึ่งหลังจากเราแก้ไขโค้ดที่เป็นของเราเสร็จแล้ว เราก็สามารถ merge โค้ดของเราให้กลับไปที่ main branch ได้ และด้วยความสามารถเหล่านี้จะทำให้การทำ branching และ merging ถือเป็นฟีเจอร์ทรงอานุภาพที่สุดของ Git ที่จะทำให้ developers ทุกคนสามารถทำงานบนโปรเจคเดียวกันได้อย่างราบรื่น
 
 ## Creating, Switching and Deleting Branches
 
@@ -51,32 +50,37 @@ git branch -d [branch_name]
 
 <!-- ให้นักศึกษาลองสร้าง branch ใหม่และ commit ที่ branch ใหม่ดู และลองสลับกลับไป branch เก่าดู จะเห็นว่าใน main branch ไม่มี commit ของเรา แต่ใน branch ใหม่จะมี -->
 
-## Start doing some examples
+## Start doing an example
 
 1. ให้สร้าง branch ใหม่ตามคำสั่ง command line ด้านบน
-1. แก้ไขโค้ดในไฟล์ `index.html` ตรงไหนก็ได้ และเพิ่มไฟล์ `cat.txt` ที่มีคำว่า cat ลงไป
-1. ใช้คำสั่ง `git add ./` เพื่อ add ไฟล์ทั้งหมดใน working directory นี้ไปยัง staged area 
-1. `git commit -m "try to edit some texts"`
-1. `git log --oneline` เพื่อเช็คว่าใน branch ใหม่ของเรานี้มี commit message ใหม่ขึ้นมารึยัง
-1. จากนั้นให้ลองใช้คำสั่ง `git checkout main` เพื่อกลับมาที่ branch main เพื่อดูความแตกต่างจะเห็นว่าไฟล์ `cat.txt` หายไป และไฟล์ `index.html` ก็กลับมาเป็นเวอร์ชั่นที่ยังไม่ถูกแก้ไข
-2. `git log --oneline` อีกครั้งใน branch main นี้จะเห็นว่าไม่มี commit message อันใหม่ที่เราเคยสร้าง
+   
+	- 	```
+		git checkout -b test/branch
+		```
+2. แก้ไขโค้ดในไฟล์ `index.html` ตรงไหนก็ได้
+3. สร้างไฟล์ใหม่ที่ชื่อ `cat.txt` และเพิ่มคำว่า cat ลงไปในไฟล์ดังกล่าว
+4. ใช้คำสั่ง `git add .` เพื่อ add ไฟล์ทั้งหมดใน working directory นี้ไปยัง staged area 
+5. `git commit -m "try to edit some texts"`
+6. `git log --oneline` เพื่อเช็คว่าใน branch ใหม่ของเรานี้มี commit message ใหม่ขึ้นมารึยัง
+7. จากนั้นให้ลองใช้คำสั่ง `git checkout main` เพื่อกลับมาที่ branch main เพื่อดูความแตกต่างจะเห็นว่าไฟล์ `cat.txt` หายไป และไฟล์ `index.html` ก็กลับมาเป็นเวอร์ชั่นที่ยังไม่ถูกแก้ไข
+8. `git log --oneline` อีกครั้งใน branch main นี้จะเห็นว่าไม่มี commit message อันใหม่ที่เราเคยสร้าง
 
 ## Merging Branches
-การ merging branches ใน Git นั้นเป็นการที่เราสามารถ**รวม**โค้ดจาก branch หนึ่งไปยังอีก branch หนึ่ง
+
+การ merging branches ใน Git นั้นเป็นการที่เราสามารถ**รวม**โค้ดจาก branch หนึ่งไปยังอีก branch หนึ่ง มีจุดประสงค์เพื่อทำให้ branch ที่เราแยกออกมานั้นสามารถกลับไปรวมกับ codebase เดิมได้
 
 ### ขั้นตอนการ merge :
-- ให้สลับไปที่ `[target branch]` (main branch หรือ branch หลักที่ต้องการให้รวมเข้าไป)
-- ใช้คำสั่ง `git merge [source_branch]`
+1. ให้สลับไปที่ `[target branch]` (main branch หรือ branch หลักที่ต้องการให้รวมเข้าไป)
+1. ใช้คำสั่ง `git merge [source_branch]`
 
 ### ตัวอย่างเช่น 
 
-หากต้องการ merge branch ที่มีชื่อว่า `feature/new-update` ให้เข้าไปที่ main branch
+หากต้องการ merge branch ที่มีชื่อว่า `feature/new-update` อันดับแรกให้เข้าไปที่ main branch
 
-ใช้คำสั่งสลับ branch เพื่อให้ไปที่ `main` branch ที่เราจะ merge เข้า
+โดยใช้คำสั่งสลับ branch เพื่อให้ไปที่ branch `main` ที่เราจะ merge เข้า
 ```
 git checkout main
 ```
-> main คือชื่อ branch
 
 จากนั้นใช้คำสั่ง merge เพื่อรวม branch `feature/new-update` เข้าไปใน branch `main`
 ```
