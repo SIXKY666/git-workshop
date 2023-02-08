@@ -55,9 +55,9 @@ git branch -d [branch_name]
 1. ให้สร้าง branch ใหม่ตามคำสั่ง command line ด้านบน
    
 	- 	```
-		git checkout -b test/branch
+		git checkout -b feature/new-update
 		```
-2. แก้ไขโค้ดในไฟล์ `index.html` ตรงไหนก็ได้
+2. แก้ไขโค้ดในไฟล์ `index.html` ที่ใดก็ได้
 3. สร้างไฟล์ใหม่ที่ชื่อ `cat.txt` และเพิ่มคำว่า cat ลงไปในไฟล์ดังกล่าว
 4. ใช้คำสั่ง `git add .` เพื่อ add ไฟล์ทั้งหมดใน working directory นี้ไปยัง staged area 
 5. `git commit -m "try to edit some texts"`
